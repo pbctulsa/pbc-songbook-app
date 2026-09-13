@@ -48,7 +48,7 @@ final class SongbookTests: XCTestCase {
         defer { try? FileManager.default.removeItem(at: directory) }
         let defaults = try XCTUnwrap(UserDefaults(suiteName: UUID().uuidString))
         let expected = song()
-        let store = SongbookStore(directory: directory, defaults: defaults) {
+        let store = SongbookStore(directory: directory, defaults: defaults, includeBundledCatalog: false) {
             Catalog(downloadedAt: Date(), songs: [expected])
         }
 
