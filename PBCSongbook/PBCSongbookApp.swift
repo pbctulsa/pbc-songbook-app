@@ -93,7 +93,7 @@ struct SongListView: View {
                     .padding(.vertical, 28)
                 }
                 ForEach(filtered) { song in
-                    NavigationLink { SongReaderView(song: song, sequence: filtered) } label: {
+                    NavigationLink { SongReaderView(song: song) } label: {
                         HStack(spacing: 14) {
                             Text(song.number.map(String.init) ?? "♪")
                                 .font(.headline.monospacedDigit()).foregroundStyle(Brand.accent)
