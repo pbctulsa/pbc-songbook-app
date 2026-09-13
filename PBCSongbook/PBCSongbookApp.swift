@@ -118,7 +118,7 @@ struct SongListView: View {
                 }
             }
         }
-        .navigationTitle(favoritesOnly ? "Favorites" : "Songbook")
+        .navigationTitle(favoritesOnly ? "Favorites" : "PBC Songbook")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Title, number, or lyrics")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
