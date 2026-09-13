@@ -29,7 +29,7 @@ The app uses existing public endpoints; no database credentials or API secrets a
 - `GET https://www.pbctulsa.org/api/songs`
 - `POST https://www.pbctulsa.org/api/song-edit-suggestions`
 - Giving: `https://pbctulsa.churchcenter.com/giving`
-- Privacy policy: `https://www.pbctulsa.org/songbook/privacy`
+- Privacy policy: `https://www.pbctulsa.org/songbookapp/privacy`
 
 Contract verified against `pbctulsa/pbc-website` main at `b60e8a0af3c56ccc3fc98ccc1f7f92d4d8928c05`. The published GET endpoint returned 1,171 songs during development. No test suggestions were sent to the live review queue.
 
