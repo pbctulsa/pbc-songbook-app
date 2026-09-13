@@ -16,32 +16,47 @@ import Network
     private let monitor = NWPathMonitor()
     private let defaults: UserDefaults
     private let session: URLSession
+    private let catalogProvider: (@Sendable () async throws -> Catalog)?
     private var lastAutomaticAttempt: Date?
 
-    init(directory: URL? = nil, defaults: UserDefaults = .standard, session: URLSession = .shared) {
-        self.defaults = defaults; self.session = session
+    init(directory: URL? = nil, defaults: UserDefaults = .standard, session: URLSession = .shared,
+         catalogProvider: (@Sendable () async throws -> Catalog)? = nil) {
+        self.defaults = defaults; self.session = session; self.catalogProvider = catalogProvider
         self.directory = directory ?? URL.applicationSupportDirectory.appendingPathComponent("PBCSongbook", isDirectory: true)
         favorites = Set(defaults.stringArray(forKey: "favorites") ?? [])
         do {
             try FileManager.default.createDirectory(at: self.directory, withIntermediateDirectories: true)
-            let url = self.directory.appendingPathComponent("catalog.json")
-            if FileManager.default.fileExists(atPath: url.path) {
-                do {
-                    let catalog = try JSONDecoder().decode(Catalog.self, from: Data(contentsOf: url))
-                    guard !catalog.songs.isEmpty else { throw SongbookError.invalidCatalog }
-                    songs = Song.ordered(catalog.songs); downloadedAt = catalog.downloadedAt
-                } catch { message = "The saved update could not be opened. Using the included songbook." }
-            }
-            if songs.isEmpty {
-                guard let bundled = Bundle.main.url(forResource: "catalog", withExtension: "json") else { throw SongbookError.invalidCatalog }
-                let catalog = try JSONDecoder().decode(Catalog.self, from: Data(contentsOf: bundled))
+        } catch {
+            message = "The songbook storage folder could not be opened: \(error.localizedDescription)"
+        }
+
+        let savedURL = self.directory.appendingPathComponent("catalog.json")
+        if FileManager.default.fileExists(atPath: savedURL.path) {
+            do {
+                let catalog = try JSONDecoder().decode(Catalog.self, from: Data(contentsOf: savedURL))
+                guard !catalog.songs.isEmpty else { throw SongbookError.invalidCatalog }
                 songs = Song.ordered(catalog.songs); downloadedAt = catalog.downloadedAt
+            } catch {
+                message = "The saved songbook could not be opened. Downloading a fresh copy."
             }
-            let draftsURL = self.directory.appendingPathComponent("drafts.json")
-            if FileManager.default.fileExists(atPath: draftsURL.path) {
+        }
+
+        if songs.isEmpty,
+           let bundledURL = Bundle.main.url(forResource: "catalog", withExtension: "json"),
+           let data = try? Data(contentsOf: bundledURL),
+           let catalog = try? JSONDecoder().decode(Catalog.self, from: data),
+           !catalog.songs.isEmpty {
+            songs = Song.ordered(catalog.songs); downloadedAt = catalog.downloadedAt
+        }
+
+        let draftsURL = self.directory.appendingPathComponent("drafts.json")
+        if FileManager.default.fileExists(atPath: draftsURL.path) {
+            do {
                 drafts = try JSONDecoder().decode([String: EditDraft].self, from: Data(contentsOf: draftsURL))
+            } catch {
+                message = "Your saved edit drafts could not be opened: \(error.localizedDescription)"
             }
-        } catch { message = "Some saved data could not be opened: \(error.localizedDescription)" }
+        }
         monitor.pathUpdateHandler = { [weak self] path in
             let online = path.status == .satisfied
             let wifi = path.usesInterfaceType(.wifi) && !path.isExpensive && !path.isConstrained
@@ -73,19 +88,31 @@ import Network
         isUpdating = true; lastUpdateMessage = nil
         defer { isUpdating = false }
         do {
-            var request = URLRequest(url: URL(string: "https://www.pbctulsa.org/api/songs")!)
-            request.timeoutInterval = 45; request.cachePolicy = .reloadIgnoringLocalCacheData
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            let (data, response) = try await session.data(for: request)
-            guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-                throw SongbookError.server((response as? HTTPURLResponse)?.statusCode ?? 0)
+            let catalog: Catalog
+            if let catalogProvider {
+                catalog = try await catalogProvider()
+            } else {
+                var request = URLRequest(url: URL(string: "https://www.pbctulsa.org/api/songs")!)
+                request.timeoutInterval = 45; request.cachePolicy = .reloadIgnoringLocalCacheData
+                request.setValue("application/json", forHTTPHeaderField: "Accept")
+                let (data, response) = try await session.data(for: request)
+                guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+                    throw SongbookError.server((response as? HTTPURLResponse)?.statusCode ?? 0)
+                }
+                catalog = try Catalog.decodeAPI(data)
             }
-            let catalog = try Catalog.decodeAPI(data)
             try persist(catalog, name: "catalog.json")
             songs = catalog.songs; downloadedAt = catalog.downloadedAt
             lastUpdateMessage = "All \(songs.count) songs are saved for offline use."
         } catch {
             lastUpdateMessage = "Update unsuccessful. Your offline songs are still available. \(error.localizedDescription)"
+        }
+    }
+    func loadSongsIfNeeded() async {
+        guard songs.isEmpty else { return }
+        await updateCatalog()
+        if songs.isEmpty, lastUpdateMessage != nil {
+            message = "Songs could not be loaded. Check your connection and try again from Downloads."
         }
     }
     func autoUpdateIfNeeded() async {
