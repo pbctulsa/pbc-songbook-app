@@ -29,7 +29,7 @@ PBC Songbook is a ministry of Peniel Baptist Church in Tulsa, Oklahoma.
 
 - Support URL: `https://www.pbctulsa.org/contact`
 - Marketing URL: `https://www.pbctulsa.org/songbook`
-- Privacy policy URL: `https://www.pbctulsa.org/songbook/privacy`
+- Privacy policy URL: `https://www.pbctulsa.org/songbookapp/privacy`
 
 ## App Review notes
 
