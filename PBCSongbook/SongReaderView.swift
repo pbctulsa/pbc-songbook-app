@@ -5,7 +5,6 @@ struct SongReaderView: View {
     @Environment(SongbookStore.self) private var store
     @Environment(\.scenePhase) private var scenePhase
     @State var song: Song
-    let sequence: [Song]
     @AppStorage("textSize") private var textSize = 24.0
     @AppStorage("readingTheme") private var theme = "System"
     @AppStorage("keepAwake") private var keepAwake = false
@@ -14,7 +13,6 @@ struct SongReaderView: View {
     @State private var sharing = false
     @State private var suggesting = false
     @State private var copied = false
-    private var index: Int { sequence.firstIndex(where: { $0.id == song.id }) ?? 0 }
     private var background: Color { theme == "Sepia" ? Color(red: 0.97, green: 0.94, blue: 0.86) : Color(uiColor: .systemBackground) }
     private var scheme: ColorScheme? { theme == "Dark" ? .dark : (theme == "Light" || theme == "Sepia" ? .light : nil) }
     var body: some View {
@@ -53,18 +51,12 @@ struct SongReaderView: View {
                     }
                     Button("Share song", systemImage: "square.and.arrow.up") { sharing = true }
                     Button("Suggest an edit", systemImage: "pencil") { suggesting = true }
+                    Divider()
+                    Toggle(isOn: $keepAwake) {
+                        Label("Keep Screen Awake", systemImage: keepAwake ? "sun.max.fill" : "sun.max")
+                    }
                 } label: { Image(systemName: "ellipsis.circle") }.accessibilityLabel("Song actions")
             }
-        }
-        .safeAreaInset(edge: .bottom) {
-            HStack(spacing: 16) {
-                Toggle(isOn: $keepAwake) { Label("Keep awake", systemImage: "sun.max") }.font(.caption)
-                Divider().frame(height: 24)
-                Button { move(-1) } label: { Image(systemName: "chevron.left").frame(width: 36, height: 44) }
-                    .disabled(index == 0).accessibilityLabel("Previous song")
-                Button { move(1) } label: { Image(systemName: "chevron.right").frame(width: 36, height: 44) }
-                    .disabled(index >= sequence.count - 1).accessibilityLabel("Next song")
-            }.padding(.horizontal, 16).padding(.vertical, 8).readingGlass().padding(.horizontal, 16).padding(.bottom, 4)
         }
         .sheet(isPresented: $settings) {
             NavigationStack {
@@ -83,26 +75,8 @@ struct SongReaderView: View {
         .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
     }
     private func updateAwake() { UIApplication.shared.isIdleTimerDisabled = keepAwake && scenePhase == .active }
-    private func move(_ offset: Int) {
-        let next = index + offset
-        guard sequence.indices.contains(next) else { return }
-        song = sequence[next]; copied = false
-    }
 }
 
-private struct ReadingGlass: ViewModifier {
-    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
-    func body(content: Content) -> some View {
-        if reduceTransparency {
-            content.background(Color(uiColor: .secondarySystemBackground), in: Capsule())
-        } else if #available(iOS 26.0, *) {
-            content.glassEffect(.regular, in: .capsule)
-        } else {
-            content.background(.regularMaterial, in: Capsule())
-        }
-    }
-}
-extension View { fileprivate func readingGlass() -> some View { modifier(ReadingGlass()) } }
 
 struct ShareSongView: View {
     let song: Song
