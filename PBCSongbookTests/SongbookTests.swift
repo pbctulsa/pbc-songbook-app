@@ -42,11 +42,23 @@ final class SongbookTests: XCTestCase {
         XCTAssertEqual((payload["suggestedFields"] as? [String: String])?["lyrics"], "Corrected lyrics")
         draft.email = "invalid"; XCTAssertFalse(draft.canSubmit)
     }
-    func testBundledCatalogContainsUniqueReadableSongs() throws {
-        let url = try XCTUnwrap(Bundle.main.url(forResource: "catalog", withExtension: "json"))
-        let catalog = try JSONDecoder().decode(Catalog.self, from: Data(contentsOf: url))
-        XCTAssertGreaterThan(catalog.songs.count, 1000)
-        XCTAssertEqual(Set(catalog.songs.map(\.id)).count, catalog.songs.count)
-        XCTAssertTrue(catalog.songs.allSatisfy { !$0.lyrics.isEmpty && !$0.title.isEmpty })
+    @MainActor func testFirstLaunchAutomaticallyDownloadsAndPersistsCatalog() async throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: UUID().uuidString))
+        let expected = song()
+        let store = SongbookStore(directory: directory, defaults: defaults) {
+            Catalog(downloadedAt: Date(), songs: [expected])
+        }
+
+        await store.loadSongsIfNeeded()
+
+        XCTAssertEqual(store.songs, [expected])
+        let saved = try JSONDecoder().decode(
+            Catalog.self,
+            from: Data(contentsOf: directory.appendingPathComponent("catalog.json"))
+        )
+        XCTAssertEqual(saved.songs, [expected])
     }
 }
