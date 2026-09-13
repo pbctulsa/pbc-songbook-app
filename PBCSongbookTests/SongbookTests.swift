@@ -30,6 +30,7 @@ final class SongbookTests: XCTestCase {
     func testSharePreservesFormattingAndSongLink() {
         XCTAssertTrue(song().shareText.contains("12. Lungset\n\nVerse 1\nNgailutna"))
         XCTAssertTrue(song().shareText.contains("https://www.pbctulsa.org/songbook/one"))
+        XCTAssertFalse(song().shareText.contains("Peniel Baptist Church"))
     }
     func testSuggestionKeepsOriginalSnapshotAndUsesExistingAPIContract() throws {
         var draft = EditDraft(song: song())

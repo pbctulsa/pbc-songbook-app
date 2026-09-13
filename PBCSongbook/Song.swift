@@ -14,7 +14,7 @@ struct Song: Codable, Hashable, Identifiable, Sendable {
         return "\(number). \(title)"
     }
     var webURL: URL { URL(string: "https://www.pbctulsa.org/songbook")!.appendingPathComponent(id) }
-    var shareText: String { "\(displayTitle)\n\n\(lyrics)\n\nPeniel Baptist Church\n\(webURL.absoluteString)" }
+    var shareText: String { "\(displayTitle)\n\n\(lyrics)\n\n\(webURL.absoluteString)" }
     var fields: [String: String] {
         ["title": title, "author": author, "category": category, "songKey": songKey, "lyrics": lyrics]
     }

@@ -19,10 +19,10 @@ enum Brand {
     static let accent = Color("AccentColor")
 }
 
-struct ChurchHeader: View {
+struct ChurchAttributionLogo: View {
     var body: some View {
-        Image("ChurchLogo").resizable().scaledToFit().frame(maxWidth: 300)
-            .padding(12).background(.white, in: RoundedRectangle(cornerRadius: 18))
+        Image("ChurchLogo").resizable().scaledToFit().frame(width: 72)
+            .padding(8).background(.white, in: RoundedRectangle(cornerRadius: 12))
             .accessibilityLabel("Peniel Baptist Church")
     }
 }
@@ -68,7 +68,6 @@ struct SongListView: View {
         List {
             if !favoritesOnly {
                 Section {
-                    ChurchHeader().frame(maxWidth: .infinity).listRowBackground(Color.clear)
                     Text("A familiar songbook. Ready wherever you worship.")
                         .font(.subheadline).foregroundStyle(.secondary).listRowBackground(Color.clear)
                 }.listRowSeparator(.hidden)
@@ -118,7 +117,7 @@ struct SongListView: View {
                 }
             }
         }
-        .navigationTitle(favoritesOnly ? "Favorites" : "PBC Songbook")
+        .navigationTitle(favoritesOnly ? "Favorites" : "Songbook")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Title, number, or lyrics")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

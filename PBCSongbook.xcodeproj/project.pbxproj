@@ -230,7 +230,7 @@
 "PRODUCT_BUNDLE_IDENTIFIER" = "org.pbctulsa.songbook";
 "PRODUCT_NAME" = "$(TARGET_NAME)";
 "GENERATE_INFOPLIST_FILE" = "YES";
-"INFOPLIST_KEY_CFBundleDisplayName" = "PBC Songbook";
+"INFOPLIST_KEY_CFBundleDisplayName" = "Songbook";
 "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.reference";
 "INFOPLIST_KEY_ITSAppUsesNonExemptEncryption" = "NO";
 "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
@@ -252,7 +252,7 @@
 "PRODUCT_BUNDLE_IDENTIFIER" = "org.pbctulsa.songbook";
 "PRODUCT_NAME" = "$(TARGET_NAME)";
 "GENERATE_INFOPLIST_FILE" = "YES";
-"INFOPLIST_KEY_CFBundleDisplayName" = "PBC Songbook";
+"INFOPLIST_KEY_CFBundleDisplayName" = "Songbook";
 "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.reference";
 "INFOPLIST_KEY_ITSAppUsesNonExemptEncryption" = "NO";
 "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";

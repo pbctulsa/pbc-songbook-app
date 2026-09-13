@@ -101,27 +101,28 @@ struct AboutView: View {
         List {
             Section {
                 VStack(spacing: 16) {
-                    ChurchHeader()
-                    Text("PBC Songbook").font(.largeTitle.weight(.bold)).foregroundStyle(Brand.accent)
+                    Image(systemName: "book.closed.fill")
+                        .font(.system(size: 44)).foregroundStyle(Brand.accent)
+                    Text("Songbook").font(.largeTitle.weight(.bold)).foregroundStyle(Brand.accent)
                     Text("A familiar songbook for worship, at church and wherever you gather.")
                         .multilineTextAlignment(.center).foregroundStyle(.secondary)
                 }.frame(maxWidth: .infinity).padding(.vertical, 12)
             }
-            Section("Made with purpose") {
-                Text("A ministry of Peniel Baptist Church")
-                Text("Designed & developed by James").foregroundStyle(.secondary)
+            Section("About") {
+                Text("Browse, search, save, and share songs wherever your community gathers.")
+                Text("Designed & developed by James").font(.subheadline).foregroundStyle(.secondary)
             }
-            Section {
-                Label("Support the ministry", systemImage: "heart").font(.headline).foregroundStyle(Brand.accent)
-                Text("Your generosity supports the ministry of Peniel Baptist Church.").foregroundStyle(.secondary)
-                Link(destination: URL(string: "https://pbctulsa.churchcenter.com/giving")!) {
-                    Label("Donate to Peniel Baptist Church", systemImage: "arrow.up.right.square").frame(maxWidth: .infinity)
-                }.buttonStyle(.borderedProminent)
-                Text("Opens our church giving page").font(.caption).foregroundStyle(.secondary)
+            Section("Acknowledgment") {
+                HStack(spacing: 14) {
+                    ChurchAttributionLogo()
+                    Text("Song content and app services are provided by Peniel Baptist Church in Tulsa, Oklahoma.")
+                        .font(.subheadline).foregroundStyle(.secondary)
+                }
             }
             Section {
                 Link(destination: URL(string: "https://www.pbctulsa.org/contact")!) { Label("Contact & feedback", systemImage: "envelope") }
-                Link(destination: URL(string: "https://www.pbctulsa.org")!) { Label("Church website", systemImage: "globe") }
+                Link(destination: URL(string: "https://www.pbctulsa.org")!) { Label("Content provider", systemImage: "globe") }
+                Link(destination: URL(string: "https://pbctulsa.churchcenter.com/giving")!) { Label("Support the project", systemImage: "heart") }
                 NavigationLink { PrivacyView() } label: { Label("Privacy & acknowledgments", systemImage: "doc.text") }
             }
             Section { Text("Version \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")").font(.caption).foregroundStyle(.secondary) }
