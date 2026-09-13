@@ -29,6 +29,7 @@ The app uses existing public endpoints; no database credentials or API secrets a
 - `GET https://www.pbctulsa.org/api/songs`
 - `POST https://www.pbctulsa.org/api/song-edit-suggestions`
 - Giving: `https://pbctulsa.churchcenter.com/giving`
+- Privacy policy: `https://www.pbctulsa.org/songbook/privacy`
 
 Contract verified against `pbctulsa/pbc-website` main at `b60e8a0af3c56ccc3fc98ccc1f7f92d4d8928c05`. The published GET endpoint returned 1,171 songs during development. No test suggestions were sent to the live review queue.
 
@@ -54,4 +55,4 @@ Manual checks before TestFlight:
 
 Run `python3 scripts/generate_project.py` after adding Swift files; the checked-in project and shared scheme are deterministic. Update the bundled catalog with `python3 scripts/update_catalog.py`. This requires network access but no credentials and never changes the server.
 
-The supplied church logo is used directly, with transparent outer whitespace trimmed. App icon is a white-backed version of that asset. No AI-generated UI images are shipped as app screens.
+The supplied church logo is used directly in the app. The app icon uses the approved flat PBC navy, white songbook, musical note, and red bookmark design. No generated imagery is used as an app screen.

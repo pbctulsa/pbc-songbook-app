@@ -3,9 +3,13 @@
 import datetime
 import json
 from pathlib import Path
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
-with urlopen('https://www.pbctulsa.org/api/songs', timeout=45) as response:
+request = Request(
+    'https://www.pbctulsa.org/api/songs',
+    headers={'Accept': 'application/json', 'User-Agent': 'PBCSongbook-CatalogBuilder/1.0'},
+)
+with urlopen(request, timeout=45) as response:
     payload = json.load(response)
 rows = payload['songs']
 assert rows and len(rows) == payload['total'], 'Incomplete catalog'

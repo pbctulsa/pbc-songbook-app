@@ -61,4 +61,11 @@ final class SongbookTests: XCTestCase {
         )
         XCTAssertEqual(saved.songs, [expected])
     }
+    func testBundledCatalogContainsUniqueReadableSongs() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "catalog", withExtension: "json"))
+        let catalog = try JSONDecoder().decode(Catalog.self, from: Data(contentsOf: url))
+        XCTAssertGreaterThan(catalog.songs.count, 1000)
+        XCTAssertEqual(Set(catalog.songs.map(\.id)).count, catalog.songs.count)
+        XCTAssertTrue(catalog.songs.allSatisfy { !$0.lyrics.isEmpty && !$0.title.isEmpty })
+    }
 }
