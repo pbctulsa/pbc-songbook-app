@@ -20,6 +20,7 @@ import Network
     private var lastAutomaticAttempt: Date?
 
     init(directory: URL? = nil, defaults: UserDefaults = .standard, session: URLSession = .shared,
+         includeBundledCatalog: Bool = true,
          catalogProvider: (@Sendable () async throws -> Catalog)? = nil) {
         self.defaults = defaults; self.session = session; self.catalogProvider = catalogProvider
         self.directory = directory ?? URL.applicationSupportDirectory.appendingPathComponent("PBCSongbook", isDirectory: true)
@@ -41,7 +42,7 @@ import Network
             }
         }
 
-        if songs.isEmpty,
+        if songs.isEmpty, includeBundledCatalog,
            let bundledURL = Bundle.main.url(forResource: "catalog", withExtension: "json"),
            let data = try? Data(contentsOf: bundledURL),
            let catalog = try? JSONDecoder().decode(Catalog.self, from: data),
