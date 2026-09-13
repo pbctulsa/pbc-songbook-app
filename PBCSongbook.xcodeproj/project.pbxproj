@@ -1,0 +1,383 @@
+// !$*UTF8*$!
+{
+"archiveVersion" = "1";
+"classes" = {
+};
+"objectVersion" = "56";
+"objects" = {
+"544EF8AD4CA5BAADDC1B7354" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "sourcecode.swift";
+"path" = "PBCSongbook/PBCSongbookApp.swift";
+"sourceTree" = "SOURCE_ROOT";
+};
+"E8D12B8B12FAE43792CF0AFA" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "sourcecode.swift";
+"path" = "PBCSongbook/Song.swift";
+"sourceTree" = "SOURCE_ROOT";
+};
+"A0638903B29E83421F5B0FA0" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "sourcecode.swift";
+"path" = "PBCSongbook/SongReaderView.swift";
+"sourceTree" = "SOURCE_ROOT";
+};
+"864C48136B6628A46E39F1D6" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "sourcecode.swift";
+"path" = "PBCSongbook/SongbookStore.swift";
+"sourceTree" = "SOURCE_ROOT";
+};
+"A6D98223A423CEAD8B7C711A" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "sourcecode.swift";
+"path" = "PBCSongbook/SupportViews.swift";
+"sourceTree" = "SOURCE_ROOT";
+};
+"75C5615C38A33E3BA14194E4" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "sourcecode.swift";
+"path" = "PBCSongbookTests/SongbookTests.swift";
+"sourceTree" = "SOURCE_ROOT";
+};
+"C32E48736761B9903F44593A" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "folder.assetcatalog";
+"path" = "PBCSongbook/Assets.xcassets";
+"sourceTree" = "SOURCE_ROOT";
+};
+"D52955B2ED1AB16BA0BA5BCE" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "text.json";
+"path" = "PBCSongbook/Resources/catalog.json";
+"sourceTree" = "SOURCE_ROOT";
+};
+"39031B58FC436B7C853C2396" = {
+"isa" = PBXFileReference;
+"lastKnownFileType" = "text.xml";
+"path" = "PBCSongbook/PrivacyInfo.xcprivacy";
+"sourceTree" = "SOURCE_ROOT";
+};
+"7AEF314E6E8ABD81EBB5CD21" = {
+"isa" = PBXFileReference;
+"explicitFileType" = "wrapper.application";
+"path" = "PBCSongbook.app";
+"sourceTree" = "BUILT_PRODUCTS_DIR";
+};
+"04D062E3EC5ECAC0A7419627" = {
+"isa" = PBXFileReference;
+"explicitFileType" = "wrapper.cfbundle";
+"path" = "PBCSongbookTests.xctest";
+"sourceTree" = "BUILT_PRODUCTS_DIR";
+};
+"FE0A091FDBFB3E9C31B7A1BD" = {
+"isa" = PBXGroup;
+"children" = (
+"7AEF314E6E8ABD81EBB5CD21",
+"04D062E3EC5ECAC0A7419627",
+);
+"name" = "Products";
+"sourceTree" = "<group>";
+};
+"E96857C58F716104CAEAD648" = {
+"isa" = PBXGroup;
+"children" = (
+"544EF8AD4CA5BAADDC1B7354",
+"E8D12B8B12FAE43792CF0AFA",
+"A0638903B29E83421F5B0FA0",
+"864C48136B6628A46E39F1D6",
+"A6D98223A423CEAD8B7C711A",
+"75C5615C38A33E3BA14194E4",
+"C32E48736761B9903F44593A",
+"D52955B2ED1AB16BA0BA5BCE",
+"39031B58FC436B7C853C2396",
+"FE0A091FDBFB3E9C31B7A1BD",
+);
+"sourceTree" = "<group>";
+};
+"127B39BCC3FB20CB885CC4B7" = {
+"isa" = PBXBuildFile;
+"fileRef" = "544EF8AD4CA5BAADDC1B7354";
+};
+"01A56FB9B0CDCA0234F9EDA4" = {
+"isa" = PBXBuildFile;
+"fileRef" = "E8D12B8B12FAE43792CF0AFA";
+};
+"4F08EA747C00B2C3D2C04099" = {
+"isa" = PBXBuildFile;
+"fileRef" = "A0638903B29E83421F5B0FA0";
+};
+"2C7F453FBD3C77D32E40F036" = {
+"isa" = PBXBuildFile;
+"fileRef" = "864C48136B6628A46E39F1D6";
+};
+"F95FBA5D8638C6AF80103064" = {
+"isa" = PBXBuildFile;
+"fileRef" = "A6D98223A423CEAD8B7C711A";
+};
+"6805EC6AFDAFDBE18E2FF355" = {
+"isa" = PBXSourcesBuildPhase;
+"buildActionMask" = "2147483647";
+"files" = (
+"127B39BCC3FB20CB885CC4B7",
+"01A56FB9B0CDCA0234F9EDA4",
+"4F08EA747C00B2C3D2C04099",
+"2C7F453FBD3C77D32E40F036",
+"F95FBA5D8638C6AF80103064",
+);
+"runOnlyForDeploymentPostprocessing" = "0";
+};
+"7850CCD2DFC026EC427CEEB6" = {
+"isa" = PBXBuildFile;
+"fileRef" = "C32E48736761B9903F44593A";
+};
+"A9E795359CD8F96D55EE648C" = {
+"isa" = PBXBuildFile;
+"fileRef" = "D52955B2ED1AB16BA0BA5BCE";
+};
+"518FB3A7FE522D3D1EDBAAF9" = {
+"isa" = PBXBuildFile;
+"fileRef" = "39031B58FC436B7C853C2396";
+};
+"2AC7AB26953A78AD46B49603" = {
+"isa" = PBXResourcesBuildPhase;
+"buildActionMask" = "2147483647";
+"files" = (
+"7850CCD2DFC026EC427CEEB6",
+"A9E795359CD8F96D55EE648C",
+"518FB3A7FE522D3D1EDBAAF9",
+);
+"runOnlyForDeploymentPostprocessing" = "0";
+};
+"0F91A57B11B30F1A7980649D" = {
+"isa" = PBXFrameworksBuildPhase;
+"buildActionMask" = "2147483647";
+"files" = (
+);
+"runOnlyForDeploymentPostprocessing" = "0";
+};
+"6E5A6220004F16EEFA56F94F" = {
+"isa" = PBXBuildFile;
+"fileRef" = "75C5615C38A33E3BA14194E4";
+};
+"87AA925F24AC656A8AAB80A9" = {
+"isa" = PBXSourcesBuildPhase;
+"buildActionMask" = "2147483647";
+"files" = (
+"6E5A6220004F16EEFA56F94F",
+);
+"runOnlyForDeploymentPostprocessing" = "0";
+};
+"2FD82F28117CA43F2CCC2350" = {
+"isa" = PBXResourcesBuildPhase;
+"buildActionMask" = "2147483647";
+"files" = (
+);
+"runOnlyForDeploymentPostprocessing" = "0";
+};
+"D6C04E321AC1AC815067AD02" = {
+"isa" = PBXFrameworksBuildPhase;
+"buildActionMask" = "2147483647";
+"files" = (
+);
+"runOnlyForDeploymentPostprocessing" = "0";
+};
+"BFD315016DE16320F7E2120C" = {
+"isa" = XCBuildConfiguration;
+"buildSettings" = {
+"SDKROOT" = "iphoneos";
+"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+"SWIFT_VERSION" = "5.0";
+"CLANG_ENABLE_MODULES" = "YES";
+"SWIFT_STRICT_CONCURRENCY" = "complete";
+"TARGETED_DEVICE_FAMILY" = "1,2";
+"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+"DEBUG_INFORMATION_FORMAT" = "dwarf";
+"ENABLE_TESTABILITY" = "YES";
+"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG";
+};
+"name" = "Debug";
+};
+"1D8C0C6B1D22EA8C7669B263" = {
+"isa" = XCBuildConfiguration;
+"buildSettings" = {
+"SDKROOT" = "iphoneos";
+"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+"SWIFT_VERSION" = "5.0";
+"CLANG_ENABLE_MODULES" = "YES";
+"SWIFT_STRICT_CONCURRENCY" = "complete";
+"TARGETED_DEVICE_FAMILY" = "1,2";
+"SWIFT_OPTIMIZATION_LEVEL" = "-O";
+"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
+"ENABLE_TESTABILITY" = "NO";
+"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "";
+};
+"name" = "Release";
+};
+"5D7731714D3E69D68AA8D7ED" = {
+"isa" = XCConfigurationList;
+"buildConfigurations" = (
+"BFD315016DE16320F7E2120C",
+"1D8C0C6B1D22EA8C7669B263",
+);
+"defaultConfigurationIsVisible" = "0";
+"defaultConfigurationName" = "Release";
+};
+"3A77CD648711364E9A877D62" = {
+"isa" = XCBuildConfiguration;
+"buildSettings" = {
+"PRODUCT_BUNDLE_IDENTIFIER" = "org.pbctulsa.songbook";
+"PRODUCT_NAME" = "$(TARGET_NAME)";
+"GENERATE_INFOPLIST_FILE" = "YES";
+"INFOPLIST_KEY_CFBundleDisplayName" = "PBC Songbook";
+"INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.reference";
+"INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+"INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+"INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+"INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
+"ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME" = "AccentColor";
+"MARKETING_VERSION" = "1.0";
+"CURRENT_PROJECT_VERSION" = "1";
+"CODE_SIGN_STYLE" = "Automatic";
+"SWIFT_EMIT_LOC_STRINGS" = "YES";
+};
+"name" = "Debug";
+};
+"066776A1C212750E8BE506A2" = {
+"isa" = XCBuildConfiguration;
+"buildSettings" = {
+"PRODUCT_BUNDLE_IDENTIFIER" = "org.pbctulsa.songbook";
+"PRODUCT_NAME" = "$(TARGET_NAME)";
+"GENERATE_INFOPLIST_FILE" = "YES";
+"INFOPLIST_KEY_CFBundleDisplayName" = "PBC Songbook";
+"INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.reference";
+"INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+"INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+"INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+"INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
+"ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME" = "AccentColor";
+"MARKETING_VERSION" = "1.0";
+"CURRENT_PROJECT_VERSION" = "1";
+"CODE_SIGN_STYLE" = "Automatic";
+"SWIFT_EMIT_LOC_STRINGS" = "YES";
+};
+"name" = "Release";
+};
+"B5E4F9F7C53A9A6AF99DBCE3" = {
+"isa" = XCConfigurationList;
+"buildConfigurations" = (
+"3A77CD648711364E9A877D62",
+"066776A1C212750E8BE506A2",
+);
+"defaultConfigurationIsVisible" = "0";
+"defaultConfigurationName" = "Release";
+};
+"7BD7682982285BB9BBB9EA6A" = {
+"isa" = XCBuildConfiguration;
+"buildSettings" = {
+"PRODUCT_BUNDLE_IDENTIFIER" = "org.pbctulsa.songbook.tests";
+"PRODUCT_NAME" = "$(TARGET_NAME)";
+"GENERATE_INFOPLIST_FILE" = "YES";
+"TEST_HOST" = "$(BUILT_PRODUCTS_DIR)/PBCSongbook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PBCSongbook";
+"BUNDLE_LOADER" = "$(TEST_HOST)";
+"CODE_SIGN_STYLE" = "Automatic";
+};
+"name" = "Debug";
+};
+"EE6A2E9A9B1D3B003A794EA3" = {
+"isa" = XCBuildConfiguration;
+"buildSettings" = {
+"PRODUCT_BUNDLE_IDENTIFIER" = "org.pbctulsa.songbook.tests";
+"PRODUCT_NAME" = "$(TARGET_NAME)";
+"GENERATE_INFOPLIST_FILE" = "YES";
+"TEST_HOST" = "$(BUILT_PRODUCTS_DIR)/PBCSongbook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PBCSongbook";
+"BUNDLE_LOADER" = "$(TEST_HOST)";
+"CODE_SIGN_STYLE" = "Automatic";
+};
+"name" = "Release";
+};
+"A5E93B15A02AA3025AC88070" = {
+"isa" = XCConfigurationList;
+"buildConfigurations" = (
+"7BD7682982285BB9BBB9EA6A",
+"EE6A2E9A9B1D3B003A794EA3",
+);
+"defaultConfigurationIsVisible" = "0";
+"defaultConfigurationName" = "Release";
+};
+"858D0932EEACC1122B4B1EF1" = {
+"isa" = PBXContainerItemProxy;
+"containerPortal" = "F6F4DA8D93E88A08220E03B7";
+"proxyType" = "1";
+"remoteGlobalIDString" = "0352A6A2FCE048894C87B37E";
+"remoteInfo" = "PBCSongbook";
+};
+"8BC62B80562684797FDF3D7A" = {
+"isa" = PBXTargetDependency;
+"target" = "0352A6A2FCE048894C87B37E";
+"targetProxy" = "858D0932EEACC1122B4B1EF1";
+};
+"0352A6A2FCE048894C87B37E" = {
+"isa" = PBXNativeTarget;
+"buildConfigurationList" = "B5E4F9F7C53A9A6AF99DBCE3";
+"buildPhases" = (
+"6805EC6AFDAFDBE18E2FF355",
+"0F91A57B11B30F1A7980649D",
+"2AC7AB26953A78AD46B49603",
+);
+"buildRules" = (
+);
+"dependencies" = (
+);
+"name" = "PBCSongbook";
+"productName" = "PBCSongbook";
+"productReference" = "7AEF314E6E8ABD81EBB5CD21";
+"productType" = "com.apple.product-type.application";
+};
+"C24B2138018A654E3D8BE775" = {
+"isa" = PBXNativeTarget;
+"buildConfigurationList" = "A5E93B15A02AA3025AC88070";
+"buildPhases" = (
+"87AA925F24AC656A8AAB80A9",
+"D6C04E321AC1AC815067AD02",
+"2FD82F28117CA43F2CCC2350",
+);
+"buildRules" = (
+);
+"dependencies" = (
+"8BC62B80562684797FDF3D7A",
+);
+"name" = "PBCSongbookTests";
+"productName" = "PBCSongbookTests";
+"productReference" = "04D062E3EC5ECAC0A7419627";
+"productType" = "com.apple.product-type.bundle.unit-test";
+};
+"F6F4DA8D93E88A08220E03B7" = {
+"isa" = PBXProject;
+"attributes" = {
+"BuildIndependentTargetsInParallel" = "YES";
+"LastUpgradeCheck" = "2600";
+};
+"buildConfigurationList" = "5D7731714D3E69D68AA8D7ED";
+"compatibilityVersion" = "Xcode 14.0";
+"developmentRegion" = "en";
+"hasScannedForEncodings" = "0";
+"knownRegions" = (
+"en",
+"Base",
+);
+"mainGroup" = "E96857C58F716104CAEAD648";
+"productRefGroup" = "FE0A091FDBFB3E9C31B7A1BD";
+"projectDirPath" = "";
+"projectRoot" = "";
+"targets" = (
+"0352A6A2FCE048894C87B37E",
+"C24B2138018A654E3D8BE775",
+);
+};
+};
+"rootObject" = "F6F4DA8D93E88A08220E03B7";
+}
