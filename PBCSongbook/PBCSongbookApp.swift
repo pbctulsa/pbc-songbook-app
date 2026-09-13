@@ -41,6 +41,7 @@ struct RootView: View {
             NavigationStack { DownloadsView() }
                 .tabItem { Label("Downloads", systemImage: "arrow.down.circle") }
         }
+        .task { await store.loadSongsIfNeeded() }
         .alert("Songbook", isPresented: Binding(get: { store.message != nil }, set: { if !$0 { store.message = nil } })) {
             Button("OK") { store.message = nil }
         } message: { Text(store.message ?? "") }
@@ -83,6 +84,14 @@ struct SongListView: View {
                 }
             }
             Section("\(filtered.count) songs") {
+                if store.songs.isEmpty && store.isUpdating {
+                    HStack {
+                        Spacer()
+                        ProgressView("Loading songs…")
+                        Spacer()
+                    }
+                    .padding(.vertical, 28)
+                }
                 ForEach(filtered) { song in
                     NavigationLink { SongReaderView(song: song, sequence: filtered) } label: {
                         HStack(spacing: 14) {
@@ -102,7 +111,7 @@ struct SongListView: View {
                     }
                     .swipeActions { Button { store.toggleFavorite(song) } label: { Label("Favorite", systemImage: "heart") }.tint(Brand.red) }
                 }
-                if filtered.isEmpty {
+                if filtered.isEmpty && !store.isUpdating {
                     ContentUnavailableView(favoritesOnly && store.favorites.isEmpty ? "No favorites yet" : "No songs found",
                                            systemImage: favoritesOnly ? "heart" : "magnifyingglass",
                                            description: Text(favoritesOnly && store.favorites.isEmpty ? "Tap the heart on a song to save it here." : "Try another number, book, title, or lyric."))
