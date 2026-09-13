@@ -137,7 +137,7 @@ struct PrivacyView: View {
             Section("Sharing and giving") { Text("You choose what to share and where through iOS. Giving opens the church's external Church Center page. Donations and payment details are handled there, not by this app.") }
             Section("Acknowledgments") { Text("Song content comes from Peniel Baptist Church's published songbook. Song lyrics remain the property of their respective rights holders. Church branding is provided by Peniel Baptist Church.") }
             Section {
-                Link("View the full privacy policy", destination: URL(string: "https://www.pbctulsa.org/songbook/privacy")!)
+                Link("View the full privacy policy", destination: URL(string: "https://www.pbctulsa.org/songbookapp/privacy")!)
                 Link("Contact the church about your information", destination: URL(string: "https://www.pbctulsa.org/contact")!)
             }
         }.navigationTitle("Privacy & acknowledgments").navigationBarTitleDisplayMode(.inline)
